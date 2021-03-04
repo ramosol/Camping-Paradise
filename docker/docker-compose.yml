@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  db:
+    image: mariadb:10.5.8
+    container_name: camping_paradise
+    environment:
+      MYSQL_ROOT_PASSWORD: camping
+      MYSQL_DATABASE: camping
+    ports:
+      - "4000:3306"
+    volumes:
+      - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
+
+  admin:
+    image: adminer
+    container_name: camping_adminer
+    ports:
+      - "8080:8080"
+
